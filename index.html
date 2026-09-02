@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101832" />
+  <meta name="description" content="됴듀의 소중한 순간들을 담은 작은 밤하늘" />
+  <title>됴 ♥ 듀 | 우리의 작은 밤하늘</title>
+  <style>
+    :root { --night:#101832; --night2:#1d2850; --pink:#ffb2c3; --cream:#fff8f4; --gold:#ffe4a3; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--cream); background:linear-gradient(180deg,#0c132b 0%,#19244b 48%,#30284d 100%); font-family:"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif; overflow-x:hidden; }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.5; background-image:radial-gradient(circle at 10% 20%,#fff 0 1px,transparent 1.5px),radial-gradient(circle at 80% 12%,#ffe6ad 0 1.5px,transparent 2px),radial-gradient(circle at 45% 70%,#fff 0 1px,transparent 1.5px); background-size:120px 140px,180px 200px,150px 170px; animation:twinkle 5s ease-in-out infinite alternate; }
+    @keyframes twinkle { to { opacity:.85; transform:translateY(-5px); } }
+    .hero { min-height:100svh; display:grid; place-items:center; text-align:center; padding:42px 20px; position:relative; }
+    .moon { width:92px; height:92px; border-radius:50%; margin:auto; background:#fff0c7; box-shadow:0 0 40px #ffe6a888,0 0 90px #ffd4d455; position:relative; }
+    .moon::after { content:""; position:absolute; width:78px; height:78px; border-radius:50%; background:#101832; left:25px; top:-8px; }
+    h1 { font-size:clamp(2.8rem,12vw,5.8rem); margin:28px 0 10px; letter-spacing:.08em; text-shadow:0 0 28px #ffb2c380; }
+    .subtitle { font-size:1.05rem; line-height:1.8; color:#ffe4ea; margin:0 0 26px; }
+    .start-btn,.letter-btn { border:0; border-radius:999px; padding:15px 24px; font-size:1rem; font-weight:800; color:#28304f; background:linear-gradient(135deg,#fff5da,#ffb7ca); box-shadow:0 10px 28px #080c1d66; cursor:pointer; transition:.25s ease; }
+    .start-btn:hover,.letter-btn:hover { transform:translateY(-3px) scale(1.03); }
+    .hint { font-size:.8rem; opacity:.65; margin-top:16px; }
+    .music { position:fixed; right:18px; top:18px; z-index:20; width:48px; height:48px; border-radius:50%; border:1px solid #ffffff55; color:white; background:#1b2448cc; backdrop-filter:blur(10px); cursor:pointer; font-size:1.15rem; box-shadow:0 7px 20px #0004; }
+    main { width:min(920px,100%); margin:auto; padding:20px 18px 100px; }
+    .intro { text-align:center; max-width:650px; margin:40px auto 95px; font-size:clamp(1.1rem,3vw,1.4rem); line-height:2; color:#ffe7ed; }
+    .memory { display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:center; margin:0 0 120px; opacity:0; transform:translateY(42px); transition:opacity .8s ease,transform .8s ease; }
+    .memory.show { opacity:1; transform:none; }
+    .memory:nth-child(even) .photo { order:2; transform:rotate(2deg); }
+    .photo { padding:11px 11px 46px; background:#fff9f3; border-radius:7px; box-shadow:0 20px 60px #03071370; transform:rotate(-2deg); }
+    .photo img { width:100%; display:block; aspect-ratio:4/5; object-fit:cover; border-radius:3px; }
+    .num { color:var(--pink); font-weight:900; letter-spacing:.12em; font-size:.82rem; }
+    .memory h2 { margin:9px 0 13px; font-size:clamp(1.55rem,4vw,2.3rem); }
+    .memory p { line-height:1.9; color:#ffe6ec; font-size:1.05rem; word-break:keep-all; }
+    .final { text-align:center; min-height:80vh; display:grid; place-items:center; padding:70px 10px; }
+    .envelope { font-size:5.5rem; display:block; margin-bottom:16px; filter:drop-shadow(0 12px 20px #0007); animation:float 2.5s ease-in-out infinite; }
+    @keyframes float { 50% { transform:translateY(-10px) rotate(2deg); } }
+    dialog { width:min(620px,calc(100% - 28px)); border:0; border-radius:24px; padding:0; color:#412f3b; background:#fff9f4; box-shadow:0 30px 90px #0009; }
+    dialog::backdrop { background:#080d20cc; backdrop-filter:blur(5px); }
+    .letter { padding:36px clamp(22px,7vw,54px); position:relative; }
+    .letter h2 { text-align:center; color:#a84d69; margin:0 0 25px; }
+    .letter p { font-family:"Nanum Myeongjo","Batang",serif; font-size:1.03rem; line-height:2; margin:0; white-space:pre-line; word-break:keep-all; }
+    .sign { text-align:right; margin-top:25px!important; color:#a84d69; font-weight:800; }
+    .close { position:absolute; top:13px; right:15px; border:0; background:transparent; font-size:1.4rem; cursor:pointer; color:#8f6674; }
+    .heart { position:fixed; z-index:50; pointer-events:none; animation:heartUp 2.6s ease-out forwards; }
+    @keyframes heartUp { from { opacity:1; transform:translateY(0) scale(.8) rotate(0); } to { opacity:0; transform:translateY(-160px) scale(1.5) rotate(18deg); } }
+    footer { text-align:center; padding:30px; color:#ffd6df99; font-size:.85rem; }
+    @media (max-width:700px) { .memory { grid-template-columns:1fr; gap:24px; margin-bottom:95px; } .memory:nth-child(even) .photo { order:0; } .memory .text { padding:0 10px; } .photo { max-width:470px; margin:auto; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } .memory { opacity:1; transform:none; } }
+  </style>
+</head>
+<body>
+  <audio id="bgm" src="music/starlight-for-dyodyu.mp3" loop preload="auto"></audio>
+  <button class="music" id="musicBtn" aria-label="배경음악 켜기">♪</button>
+  <header class="hero">
+    <div>
+      <div class="moon" aria-hidden="true"></div>
+      <h1>됴 ♥ 듀</h1>
+      <p class="subtitle">우리 둘만 알고 있는<br>다섯 개의 반짝이는 순간</p>
+      <button class="start-btn" id="startBtn">우리 이야기 열어보기 💗</button>
+      <p class="hint">버튼을 누르면 음악과 함께 시작돼요</p>
+    </div>
+  </header>
+  <main id="story">
+    <p class="intro">어색하게 마주 보던 우리가<br>이제는 서로의 가장 편안한 짱친이 되기까지.<br>우리의 밤하늘에 차곡차곡 쌓인 순간들이야 ✨</p>
+    <section class="memory">
+      <div class="photo"><img src="images/01-awkward.webp" alt="처음에는 서로 어색하게 서 있던 됴듀" /></div>
+      <div class="text"><span class="num">MEMORY 01</span><h2>어색했던 우리</h2><p>서로 어색했던 적도 있지만,<br>지금 우리는 세상에서 제일 편한 짱친이야!</p></div>
+    </section>
+    <section class="memory">
+      <div class="photo"><img src="images/02-holding-hands.webp" alt="처음으로 손을 잡은 됴듀" /></div>
+      <div class="text"><span class="num">MEMORY 02</span><h2>처음 잡은 손</h2><p>스킨십을 좋아하지 않았던 나도<br>오빠 덕분에 달라진 것 같아.<br>이제는 손만 잡아도 설레.</p></div>
+    </section>
+    <section class="memory">
+      <div class="photo"><img src="images/03-hug.webp" alt="따뜻하게 포옹하는 됴듀" /></div>
+      <div class="text"><span class="num">MEMORY 03</span><h2>나만의 충전소</h2><p>오빠랑 포옹하면 언제나 기분이 나아져.<br>꼬옥 안아 주면 에너지 충전 완료! 🔋💗</p></div>
+    </section>
+    <section class="memory">
+      <div class="photo"><img src="images/04-kiss.webp" alt="밤하늘 아래 입맞춤하는 됴듀" /></div>
+      <div class="text"><span class="num">MEMORY 04</span><h2>뽀뽀 중독</h2><p>그러다 어느새 내가 먼저 다가가는<br>뽀뽀 중독자가 되어 버렸어! 💋</p></div>
+    </section>
+    <section class="memory">
+      <div class="photo"><img src="images/05-cute-cheek.webp" alt="오빠에게 볼을 내밀며 애교 부리는 됴" /></div>
+      <div class="text"><span class="num">MEMORY 05</span><h2>이잉, 주인님</h2><p>오빠 앞에서만 자꾸 애교가 늘어.<br>오늘도 볼 내밀고 기다리는 중… 이잉 주인님! 🥺</p></div>
+    </section>
+    <section class="final">
+      <div>
+        <span class="envelope" aria-hidden="true">💌</span>
+        <h2>오빠에게 마지막으로 할 말이 있어</h2>
+        <button class="letter-btn" id="letterBtn">비밀 편지 열기</button>
+      </div>
+    </section>
+  </main>
+  <dialog id="letterDialog">
+    <div class="letter">
+      <button class="close" id="closeBtn" aria-label="편지 닫기">×</button>
+      <h2>오빠에게 💗</h2>
+      <p>오빠, 어느덧 우리에게 250일이 다가오고 있네.
+아직 조금은 남았지만, 이렇게 시간이 빠르게 흐를 줄 몰랐어.
+처음에는 서로 어색하기도 했던 우리가 이제는 제일 편한 짱친이 된 게 참 신기해.
+오빠와 함께하면서 몰랐던 설렘도, 따뜻함도 하나씩 알게 된 것 같아.
+힘든 날 오빠 품에 안기면 괜찮아지는 나를 보며 오빠가 내게 얼마나 큰 사람인지 느껴.
+이제는 손잡는 것도, 포옹하는 것도, 뽀뽀하는 것도 전부 너무 좋아졌어.
+앞으로도 지금처럼 장난치고 웃으면서 서로의 가장 편안한 사람이 되어 주자.
+가끔 서툴고 투닥거리는 날이 와도 결국 서로의 손을 꼭 잡고 있었으면 좋겠어.
+오빠와 함께한 모든 순간이 내게는 오래 간직하고 싶은 소중한 추억이야.
+지금까지도 고맙고, 앞으로는 더 많이 사랑할게. 많이 많이 사랑해, 오빠.</p>
+      <p class="sign">오빠의 됴가 ♥</p>
+    </div>
+  </dialog>
+  <footer>우리의 밤하늘은 계속 반짝이는 중 · 됴듀</footer>
+  <script>
+    const bgm=document.getElementById('bgm'); const musicBtn=document.getElementById('musicBtn');
+    const playMusic=async()=>{ try{ await bgm.play(); musicBtn.textContent='Ⅱ'; musicBtn.setAttribute('aria-label','배경음악 끄기'); }catch(e){} };
+    document.getElementById('startBtn').addEventListener('click',()=>{ playMusic(); document.getElementById('story').scrollIntoView({behavior:'smooth'}); burst(innerWidth/2,innerHeight*.7,18); });
+    musicBtn.addEventListener('click',()=>{ if(bgm.paused){ playMusic(); }else{ bgm.pause(); musicBtn.textContent='♪'; musicBtn.setAttribute('aria-label','배경음악 켜기'); } });
+    const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.16});
+    document.querySelectorAll('.memory').forEach(el=>observer.observe(el));
+    const dialog=document.getElementById('letterDialog');
+    document.getElementById('letterBtn').addEventListener('click',e=>{ dialog.showModal(); const r=e.target.getBoundingClientRect(); burst(r.left+r.width/2,r.top,26); });
+    document.getElementById('closeBtn').addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+    function burst(x,y,count=12){ for(let i=0;i<count;i++){ const h=document.createElement('span'); h.className='heart'; h.textContent=['♥','♡','✦'][i%3]; h.style.left=(x+(Math.random()-.5)*150)+'px'; h.style.top=(y+(Math.random()-.5)*70)+'px'; h.style.color=['#ff9db5','#ffe4a3','#fff'][i%3]; h.style.fontSize=(14+Math.random()*18)+'px'; h.style.animationDelay=(Math.random()*.35)+'s'; document.body.appendChild(h); setTimeout(()=>h.remove(),3200); } }
+    document.addEventListener('click',e=>{if(e.target.closest('button'))return; if(Math.random()>.45)burst(e.clientX,e.clientY,3)});
+  </script>
+</body>
+</html>
